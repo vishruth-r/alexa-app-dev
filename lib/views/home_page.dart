@@ -1,6 +1,8 @@
 import 'package:alexa_shopping_app/models/items.dart';
 import 'package:flutter/material.dart';
-import 'package:alexa_shopping_app/services/remote_services.dart';
+
+
+import '../service/remote_services.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -23,7 +25,10 @@ class _HomePageState extends State<HomePage> {
     items = await RemoteService().getItems();
     if (items != null)
     {
-      setState
+      setState((){
+        isLoaded= true;
+      });
+
     }
 
   }
@@ -34,13 +39,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index){
-        return Container(
-          child: Text("aisudssfkn"),
-        );
-      },),
+      
+      body: Visibility(
+        replacement: const Center(child: CircularProgressIndicator(),),
+        child: ListView.builder(
+          itemCount: items?.length,
+          itemBuilder: (context, index){
+          return Container(
+            child: Text(items![index].title),
+          );
+        },),
+      ),
     );
   }
 }
