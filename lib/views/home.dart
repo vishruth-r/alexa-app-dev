@@ -1,7 +1,16 @@
+import 'package:alexa_shopping_app/service/remote_services.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  final RemoteService productsController = Get.put(RemoteService());
+  final List categories = [
+    "TShirt",
+    "Pants",
+    "Jeans",
+    "Jackets",
+    "Shirt",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +59,12 @@ class HomeView extends StatelessWidget {
     ),
     ),
                 )
+                ]
                 )
-              ]
-            ,)
-            ),
-          ),
+                ,)
+
+            ],
+          )
         ),
       ],
       ),

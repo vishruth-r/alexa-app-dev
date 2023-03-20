@@ -1,5 +1,3 @@
-
-
 import 'package:alexa_shopping_app/models/items.dart';
 import 'package:http/http.dart' as http;
 class RemoteService
