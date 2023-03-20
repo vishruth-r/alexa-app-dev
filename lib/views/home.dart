@@ -8,7 +8,8 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(),
       backgroundColor: Colors.grey[200],
-      body: Column(children: [
+      body: Column(
+        children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -16,7 +17,6 @@ class HomeView extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
@@ -27,27 +27,37 @@ class HomeView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('jewelery', style: TextStyle(fontWeight: FontWeight.bold
-                          ),
-                          ),
-                          IconButton(onPressed: (){}, icon: Icon(Icons.arrow_drop_down))
+                          ),),
+                          IconButton(onPressed: (){}, icon: Icon(Icons.arrow_drop_down)),
                         ],
                       ),
                     ),
-                  )
-                  IconButton(onPressed: (){}, icon: Icon(Icons.filter_list_alt))
-                  ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    child: Text("electronics"),
-                  )
+                  ),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.grid_view_outlined)),
                 ],
               ),
-            ],
+            ListView.builder(itemBuilder: (context, index) =>
+              Row(
+                children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.black
+
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 8,horizontal: 16),
+                  child: Text("Tshirt",style: TextStyle(color: Colors.white
+    ),
+    ),
+                )
+                )
+              ]
+            ,)
+            ),
           ),
-        )
-      ],),
+        ),
+      ],
+      ),
     );
   }
 
