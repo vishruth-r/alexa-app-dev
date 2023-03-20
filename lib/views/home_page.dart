@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index){
           return Container(
             child: Text(items![index].title),
+
           );
         },),
       ),

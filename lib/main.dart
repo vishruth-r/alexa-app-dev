@@ -1,4 +1,5 @@
 import 'package:alexa_shopping_app/views/home_page.dart';
+import 'package:alexa_shopping_app/views/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: _title,
-      home: HomePage(),
+      home: HomeView(),
     );
   }
 }
