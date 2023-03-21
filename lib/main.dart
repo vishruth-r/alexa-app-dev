@@ -1,10 +1,12 @@
 import 'package:alexa_shopping_app/views/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:alexa_shopping_app/views/home_page.dart';
+import 'package:alexa_shopping_app/models/items.dart';
 
 
-void main() {
-  runApp(MyApp());
+void main() {  List<Welcome> cartItems = []; // Define cartItems here
+
+runApp(MyApp(cartItems: cartItems));
 }
 MaterialColor myColor = MaterialColor(0xFFFFFFFF, {
   50: Color(0xFFECEFF1),
@@ -20,6 +22,10 @@ MaterialColor myColor = MaterialColor(0xFFFFFFFF, {
 });
 
 class MyApp extends StatelessWidget {
+  final List<Welcome> cartItems;
+
+  const MyApp({Key? key, required this.cartItems}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,9 +35,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: myColor,
       ),
       home: HomePage(),
-    routes: {
-      '/cart': (context) => CartPage(cartItems: [],),
-    }
+        initialRoute: '/',
+        routes: {
+          '/cart': (context) => CartPage(cartItems: cartItems),}
     );
   }
 }
