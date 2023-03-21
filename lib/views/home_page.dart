@@ -37,19 +37,51 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')
+      appBar: AppBar(title: const Text('Amazon', style: TextStyle(color: Colors.black),
+      ),
+          actions: [IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined))
+
+    ],
+
       ),
       
       body: Visibility(
+
         replacement: const Center(child: CircularProgressIndicator(),),
         child: ListView.builder(
           itemCount: items?.length,
-          itemBuilder: (context, index){
-          return Container(
-            child: Text(items![index].title),
+          itemBuilder: (context, index) {
+            return Card(
+              child: Column(
+                children: [
+                  Image.network(items![index].image),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          items![index].title,
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          items![index].description,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          '\$${items![index].price}',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
 
-          );
-        },),
       ),
     );
   }

@@ -13,7 +13,7 @@ class Welcome {
     required this.id,
     required this.title,
     required this.price,
-    this.description,
+    required this.description,
     this.category,
     required this.image,
     required this.rating,
@@ -22,7 +22,7 @@ class Welcome {
   int id;
   String title;
   double price;
-  String? description;
+  String description;
   Category? category;
   String image;
   Rating rating;
