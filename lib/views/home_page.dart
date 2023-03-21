@@ -1,7 +1,6 @@
 import 'package:alexa_shopping_app/models/items.dart';
 import 'package:flutter/material.dart';
 
-
 import '../service/remote_services.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Welcome>? items;
   var isLoaded = false;
+  List<Welcome>? cartItems = [];
 
 
   @override
@@ -31,6 +31,11 @@ class _HomePageState extends State<HomePage> {
 
     }
 
+  }
+  void addToCart(Welcome item) {
+    setState(() {
+      cartItems!.add(item);
+    });
   }
 
 
@@ -65,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                           items![index].title,
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
+
                         Text(
                           items![index].description,
                           style: TextStyle(fontSize: 16),
@@ -72,6 +78,20 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           '\$${items![index].price}',
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                          IconButton(
+                            icon: Icon(Icons.add_shopping_cart),
+                            onPressed: () {
+                              addToCart(items![index]);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text("${items![index].title} added to cart!"),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+
+                            },
+
                         ),
                       ],
                     ),
