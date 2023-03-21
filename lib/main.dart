@@ -1,5 +1,7 @@
+import 'package:alexa_shopping_app/views/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:alexa_shopping_app/views/home_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: myColor,
       ),
       home: HomePage(),
+    routes: {
+      '/cart': (context) => CartPage(cartItems: [],),
+    }
     );
   }
 }

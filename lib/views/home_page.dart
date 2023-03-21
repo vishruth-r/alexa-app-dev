@@ -45,7 +45,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text('Amazon', style: TextStyle(color: Colors.black),
       ),
           actions: [IconButton(onPressed: (){}, icon: Icon(Icons.search)),
-            IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined))
+            IconButton(onPressed: (){
+              Navigator.pushNamed(context, '/cart');
+            }, icon: Icon(Icons.shopping_cart_outlined))
 
     ],
 
