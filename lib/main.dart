@@ -1,7 +1,9 @@
 import 'package:alexa_shopping_app/views/cart_page.dart';
+import 'package:alexa_shopping_app/views/checkout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:alexa_shopping_app/views/home_page.dart';
 import 'package:alexa_shopping_app/models/items.dart';
+
 
 
 void main() {  List<Welcome> cartItems = []; // Define cartItems here
@@ -37,7 +39,8 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
         initialRoute: '/',
         routes: {
-          '/cart': (context) => CartPage(cartItems: cartItems),}
-    );
+          '/cart': (context) => CartPage(cartItems: cartItems),
+          '/checkout': (context) => CheckoutPage(cartItems: cartItems),
+        }   );
   }
 }

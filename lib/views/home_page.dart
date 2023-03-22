@@ -35,10 +35,17 @@ class _HomePageState extends State<HomePage> {
 
   }
   void addToCart(Welcome item) {
-    setState(() {
-      cartItems!.add(item);
-    });
+    // check if item already exists in cart
+    int existingIndex = cartItems.indexWhere((i) => i.id == item.id);
+    if (existingIndex != -1) {
+      // update quantity of existing item
+      cartItems[existingIndex].quantity++;
+    } else {
+      // add new item to cart
+      cartItems.add(item);
+    }
   }
+
 
 
   @override
