@@ -100,7 +100,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               onPressed: () {
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
-              child: Text('OK'),
+              child: Text('OK',style: TextStyle(color: Colors.black),),
             ),
           ],
         );

@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             return Card(
               child: Column(
                 children: [
-                  Image.network(items![index].image,height: 100,width: 100,),
+                  Image.network(items![index].image,height: 120,width: 120,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                             });
                           },
                           child: Text(
-                            expandedIndices.contains(index) ? items![index].description : '${items![index].description.substring(0, 20)}...',
+                            expandedIndices.contains(index) ? items![index].description : '${items![index].description.substring(0, 35)}... Read more',
                             style: TextStyle(fontSize: 16),
                           ),
                         ),
