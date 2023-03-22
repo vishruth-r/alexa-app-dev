@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Set<int> expandedIndices = {};
   final List<Welcome> cartItems = [];
   List<Welcome>? items;
   var isLoaded = false;
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
     ],
 
       ),
-      
+
       body: Visibility(
 
         replacement: const Center(child: CircularProgressIndicator(),),
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             return Card(
               child: Column(
                 children: [
-                  Image.network(items![index].image),
+                  Image.network(items![index].image,height: 100,width: 100,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -83,12 +84,22 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           items![index].title,
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (expandedIndices.contains(index)) {
+                                expandedIndices.remove(index);
+                              } else {
+                                expandedIndices.add(index);
+                              }
+                            });
+                          },
+                          child: Text(
+                            expandedIndices.contains(index) ? items![index].description : '${items![index].description.substring(0, 20)}...',
+                            style: TextStyle(fontSize: 16),
+                          ),
                         ),
 
-                        Text(
-                          items![index].description,
-                          style: TextStyle(fontSize: 16),
-                        ),
                         Text(
                           '\$${items![index].price}',
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
