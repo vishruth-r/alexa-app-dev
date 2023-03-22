@@ -17,6 +17,7 @@ class Welcome {
     this.category,
     required this.image,
     required this.rating,
+    this.quantity = 1,
   });
 
   int id;
@@ -26,6 +27,7 @@ class Welcome {
   Category? category;
   String image;
   Rating rating;
+  int quantity;
 
   factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
     id: json["id"],
@@ -35,6 +37,8 @@ class Welcome {
     category: categoryValues.map[json["category"]],
     image: json["image"],
     rating: Rating.fromJson(json["rating"]),
+
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -45,6 +49,7 @@ class Welcome {
     "category": categoryValues.reverse[category],
     "image": image,
     "rating": rating.toJson(),
+    "quantity": quantity,
   };
 }
 

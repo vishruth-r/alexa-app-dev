@@ -1,6 +1,6 @@
 import 'package:alexa_shopping_app/models/items.dart';
 import 'package:flutter/material.dart';
-import 'package:alexa_shopping_app/models/items.dart';
+import 'package:alexa_shopping_app/views/cart_page.dart';
 
 import '../service/remote_services.dart';
 import 'cart_page.dart';
@@ -12,9 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<Welcome> cartItems = [];
   List<Welcome>? items;
   var isLoaded = false;
-  List<Welcome>? cartItems = [];
 
 
   @override
