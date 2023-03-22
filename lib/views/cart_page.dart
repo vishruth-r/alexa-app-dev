@@ -1,75 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:alexa_shopping_app/models/items.dart';
 
-import 'checkout_page.dart';
-
-class CartPage extends StatefulWidget {
+class CartPage extends StatelessWidget {
   final List<Welcome> cartItems;
 
-  const CartPage({Key? key, required this.cartItems}) : super(key: key);
+  CartPage({required this.cartItems});
 
   @override
-  _CartPageState createState() => _CartPageState();
-}class _CartPageState extends State<CartPage> {
-  double getTotalPrice() {
-    double totalPrice = 0;
-    for (final item in widget.cartItems) {
-      totalPrice += item.price * item.quantity;
-    }
-    return totalPrice;
-  }
-
-
-@override
-Widget build(BuildContext context) {
-  final groupedCartItems = <String, Welcome>{};
-
-  for (final item in widget.cartItems) {
-    if (groupedCartItems.containsKey(item.title)) {
-      groupedCartItems[item.title]!.quantity += item.quantity;
-    } else {
-      groupedCartItems[item.title] = item;
-    }
-  }
-
-  final cartItemList = groupedCartItems.values.toList();
-
-
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('Cart'),
-    ),
-    body: ListView.builder(
-      itemCount: cartItemList.length,
-      itemBuilder: (context, index) {
-        final cartItem = cartItems[index];
-        return ListTile(
-          title: Text(cartItem.title),
-          subtitle: Text('\$${cartItem.price.toStringAsFixed(2)}'),
-          trailing: IconButton(
-            icon: Icon(Icons.remove_shopping_cart),
-            onPressed: () {
-              setState(() {
-                cartItems.removeAt(index);
-              });
-            },
-          ),
-        );
-      },
-    ),
-    bottomNavigationBar: Padding(
-      padding: EdgeInsets.all(8.0),
-      child: RaisedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => CheckoutPage(cartItems: cartItems),
-            ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cart'),
+      ),
+      body: cartItems.isEmpty
+          ? Center(
+        child: Text('Your cart is empty'),
+      )
+          : ListView.builder(
+        itemCount: cartItems.length,
+        itemBuilder: (context, index) {
+          final item = cartItems[index];
+          return ListTile(
+            leading: Image.network(cartItems![index].image),
+            title: Text(item.title),
+            subtitle: Text('Quantity: ${item.quantity}'),
+            trailing: Text('\$${item.price}'),
           );
         },
-        child: Text('Checkout'),
       ),
-    ),
-  );
-}
+      bottomNavigationBar: cartItems.isEmpty
+          ? null
+          : BottomAppBar(
+        child: Container(
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  'Total: \$${_getTotalPrice(cartItems)}',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/checkout',
+                      arguments: cartItems);
+                },
+                child: Text('Checkout'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
+  double _getTotalPrice(List<Welcome> items) {
+    double total = 0.0;
+    for (var item in items) {
+      total += item.price * item.quantity;
+    }
+    return total;
+  }
+}

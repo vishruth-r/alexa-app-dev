@@ -11,6 +11,7 @@ class CheckoutPage extends StatefulWidget {
   _CheckoutPageState createState() => _CheckoutPageState();
 }
 
+
 class _CheckoutPageState extends State<CheckoutPage> {
   final _formKey = GlobalKey<FormState>();
   String? _name;
@@ -32,7 +33,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             children: [
               Text(
                 'Buyer Information',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Name'),
